@@ -42,8 +42,4 @@ void destroy_client(struct Client_Socket* sock) {
 	free(sock);
 }
 
-int main() {
-	struct Client_Socket* client;
-	client = create_client(45678, "127.0.0.1");
-	destroy_client(client);
-}
+
