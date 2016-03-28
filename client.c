@@ -48,9 +48,9 @@ void send_message(struct Client_Socket* sock, char* message) {
   if (result < 0) fprintf(stderr, "ERROR: failed to send message\n");
 }
 
-char* rec_message(struct Client_Socket* sock, char* message) {
+char* rec_message(struct Client_Socket* sock) {
   char buffer[256];
   int result  = read(sock->file_desc,buffer,255);
   if (result < 0) fprintf(stderr, "ERROR: failed to read message\n");
-
+  //return buffer;
 }
