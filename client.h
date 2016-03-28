@@ -11,24 +11,29 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <netdb.h> 
+#include <unistd.h>
 
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-struct Client_Socket {
+  struct Client_Socket {
+    
+    int port_number, file_desc, num_char_read;
+    struct sockaddr_in server_address;
+    struct hostent *server;
+    
+  };
+  
+  struct Client_Socket* create_client(int port, char* hostname);
 
-int port_number, file_desc, num_char_read;
-struct sockaddr_in server_address;
-struct hostent *server;
-	
-};
-
-struct Client_Socket* create_client(int port, char* hostname);
-
-void destroy_client(struct Client_Socket* sock);
-
+  void send_message(struct Client_Socket* sock, char* message);
+  
+  void destroy_client(struct Client_Socket* sock);
+  
+  char* rec_message(struct Client_Socket* sock, char* message);
+  
 #ifdef __cplusplus
 }
 #endif

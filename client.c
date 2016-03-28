@@ -17,7 +17,6 @@ struct Client_Socket* create_client(int port, char* hostname) {
 			exit(0);
 		}
 
-	
 	/*
 		TODO: should we be using this? 
 
@@ -43,3 +42,14 @@ void destroy_client(struct Client_Socket* sock) {
 }
 
 
+void send_message(struct Client_Socket* sock, char* message) {
+  int result = write(sock->file_desc, message, strlen(message));
+  if (result < 0) fprintf(stderr, "ERROR: failed to send message\n");
+}
+
+char* rec_message(struct Client_Socket* sock, char* message) {
+  char buffer[256];
+  int result  = read(sock->file_desc,buffer,255);
+  if (result < 0) fprintf(stderr, "ERROR: failed to read message\n");
+
+}
