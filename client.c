@@ -38,6 +38,7 @@ struct Client_Socket* create_client(int port, char* hostname) {
 }
 
 void destroy_client(struct Client_Socket* sock) {
+  close(sock->file_desc);
 	free(sock);
 }
 
