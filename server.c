@@ -21,7 +21,7 @@ struct Server_Socket* create_server(int port) {
   return sock;  
 }
 
-  void lis_acpt(struct Server_Socket* sock) {
+void lis_acpt(struct Server_Socket* sock) {
   int len =  sizeof(struct sockaddr_in);
   listen(sock->file_desc, 5);
   sock->client_file_desc = accept(sock->file_desc,

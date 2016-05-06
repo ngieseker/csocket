@@ -28,6 +28,8 @@ extern "C" {
   
   struct Server_Socket* create_server(int port);
 
+  void lis_acpt(struct Server_Socket* sock);
+
   //void send_message(struct Server_Socket* sock, char* message);
   
   void destroy_server(struct Server_Socket* sock);
