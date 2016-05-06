@@ -1,5 +1,7 @@
 #include "client.h"
 #include "string.h"
+#define BUFFER_SIZE 255 
+
 
 /* Modifies socket passed in */
 struct Client_Socket* create_client(int port, char* hostname) {
@@ -50,7 +52,7 @@ void send_message(struct Client_Socket* sock, char* message) {
 
 char* rec_message(struct Client_Socket* sock) {
   char buffer[256];
-  int result  = read(sock->file_desc,buffer,255);
+  int result  = read(sock->file_desc,buffer, BUFFER_SIZE);
   if (result < 0) fprintf(stderr, "ERROR: failed to read message\n");
   //return buffer;
 }

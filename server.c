@@ -1,6 +1,8 @@
 #include "server.h"
 #include "string.h"
 
+// constant define
+#define BUFFER_SIZE 255 
 
 struct Server_Socket* create_server(int port) {
   struct Server_Socket* sock;
@@ -16,14 +18,16 @@ struct Server_Socket* create_server(int port) {
              sizeof(struct sockaddr_in));
   if (res < 0) 		fprintf(stderr, "ERROR: failed to connect\n");
   
+  return sock;  
+}
+
+  void lis_acpt(struct Server_Socket* sock) {
   int len =  sizeof(struct sockaddr_in);
-  
   listen(sock->file_desc, 5);
   sock->client_file_desc = accept(sock->file_desc,
                                   (struct sockaddr *) &sock->client_address,
                                   (socklen_t *) &len);
   if(sock->client_file_desc < 0) fprintf(stderr, "ERROR: failed to accept\n");
-  return sock;
 }
 
 void destroy_server(struct Server_Socket* sock) {
@@ -35,7 +39,9 @@ void destroy_server(struct Server_Socket* sock) {
 
 char* rec_message(struct Server_Socket* sock) {
   char buffer[256];
-  int res = read(sock->client_file_desc,buffer, 255);
+  int res = read(sock->client_file_desc,buffer, BUFFER_SIZE);
   if (res < 0) fprintf(stderr, "ERROR: failed to read message\n");
+
+  // Modify the return for your own benefit
   printf("Here is the message: %s\n",buffer);
 }
