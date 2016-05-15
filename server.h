@@ -1,5 +1,5 @@
 /*  
-		This is a lightweight server socket
+		This is a lightweight TCP server socket
 		Provides a create, destoy, send, and recieve
 		message functions.
 */
@@ -23,7 +23,7 @@ extern "C" {
     int port_number, client_file_desc, file_desc ;
     struct sockaddr_in server_address, client_address;
     struct hostent *server;
-    
+    char buffer[256];
   };
   
   struct Server_Socket* create_server(int port);
@@ -34,7 +34,7 @@ extern "C" {
   
   void destroy_server(struct Server_Socket* sock);
   
-  char* rec_message(struct Server_Socket* sock);
+  void rec_message(struct Server_Socket* sock);
   
 #ifdef __cplusplus
 }

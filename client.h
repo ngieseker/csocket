@@ -23,6 +23,7 @@ extern "C" {
     int port_number, file_desc, num_char_read;
     struct sockaddr_in server_address;
     struct hostent *server;
+    char buffer[256];
     
   };
   
@@ -32,7 +33,7 @@ extern "C" {
   
   void destroy_client(struct Client_Socket* sock);
   
-  char* rec_message(struct Client_Socket* sock, char* message);
+  void rec_message(struct Client_Socket* sock);
   
 #ifdef __cplusplus
 }

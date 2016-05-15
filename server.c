@@ -37,11 +37,7 @@ void destroy_server(struct Server_Socket* sock) {
 
 }
 
-char* rec_message(struct Server_Socket* sock) {
-  char buffer[256];
-  int res = read(sock->client_file_desc,buffer, BUFFER_SIZE);
+void rec_message(struct Server_Socket* sock) {
+  int res = read(sock->client_file_desc,sock->buffer, BUFFER_SIZE);
   if (res < 0) fprintf(stderr, "ERROR: failed to read message\n");
-
-  // Modify the return for your own benefit
-  printf("Here is the message: %s\n",buffer);
 }
